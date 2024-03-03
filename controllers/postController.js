@@ -2,7 +2,9 @@ const Post = require('../model/post')
 //////////////////////////////////////////////////////
 const getPosts = async (req,res)=>{
   try {
-    let posts = await  Post.find().populate('authorId', 'username -_id')
+    let ID = req.user._id
+    let posts = await  Post.find({authorId : ID})
+    //.populate('authorId', 'username -_id')
     res.status(200).json(posts);
   } catch (error) {
     res.sendStatus(500).json({message : "Error with fetching posts"})
