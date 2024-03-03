@@ -2,7 +2,7 @@ const passport = require('passport');
 const bcrypt = require('bcrypt')
 const User = require('../model/user')
 //////////////////////////////////////////////////////////////////////
-// Route to handle user login
+// Register
 const register = async (req, res) => {
   let {username, email,password,fullName,dateOfBirth,role} = req.body
   try {
@@ -21,8 +21,7 @@ const register = async (req, res) => {
 };
 
 //////////////////////////////////////////////////////////////////////
-//Route of Login
-// In your controller
+//Login
 
 const login = (req, res, next) => {
   passport.authenticate('local', {
@@ -53,7 +52,7 @@ const getAll = async(req, res) => {
     }
 };
 //////////////////////////////////////////////////////////////////////
-//Route of  Update Profile
+//Update Profile
 const updateUser = async (req, res) => {
     let ID = req.user._id
     let {username,email,password,fullName,dateOfBirth,role} = req.body
@@ -73,7 +72,7 @@ const updateUser = async (req, res) => {
       }
   };
 //////////////////////////////////////////////////////////////////////
-// Log out Route
+// Log out 
  const logout =(req,res)=>{
    try {
     req.session.destroy();
@@ -82,5 +81,6 @@ const updateUser = async (req, res) => {
       res.send(error);
    }
  }
-
+//////////////////////////////////////////////////////////////////////
+// Delete user
 module.exports = {register,login,getUser,logout,getAll,updateUser}
