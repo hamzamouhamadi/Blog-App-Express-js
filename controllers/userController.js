@@ -26,9 +26,9 @@ const register = async (req, res) => {
 
 const login = (req, res, next) => {
   passport.authenticate('local', {
-    successRedirect: '/profile',
+    successRedirect: '/user/profile',
     failureRedirect: '/login',
-    failureFlash : true,
+    failureFlash : false,
   })(req, res, next);
 };
 //////////////////////////////////////////////////////////////////////
