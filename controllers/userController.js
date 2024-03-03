@@ -4,7 +4,7 @@ const User = require('../model/user')
 //////////////////////////////////////////////////////////////////////
 // Register
 const register = async (req, res) => {
-  let {username, email,password,fullName,dateOfBirth,role} = req.body
+  let {username, email,password,fullName,dateOfBirth,isAdmin} = req.body
   try {
     let hashedPass = await bcrypt.hash(password,  10);
     const user = await User.create({ 
@@ -13,7 +13,7 @@ const register = async (req, res) => {
       password : hashedPass,
       fullName : fullName,
       dateOfBirth : dateOfBirth,
-      role : role})
+      isAdmin : isAdmin})
     res.send(user);
   } catch (err) {
     res.status(500).send(err);

@@ -60,8 +60,17 @@ passport.deserializeUser((user, done) => {
     }
 }
 
+ function isAdmin(req,res,next) {
+  if(req.user.isAdmin === true){
+    return next();
+  }else{
+    res.json({message : "You should be admin to do this request"})
+  }
+ }
+
 module.exports = {
-  app : app,
-  isLogged: isLogged
+  app ,
+  isLogged,
+  isAdmin
 };
 

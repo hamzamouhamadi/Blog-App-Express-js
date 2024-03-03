@@ -9,8 +9,17 @@ const getPosts = async (req,res)=>{
   } catch (error) {
     res.sendStatus(500).json({message : "Error with fetching posts"})
   }
-  
 }
+//////////////////////////////////////////////////////
+// For admin
+const getAllPosts = async (req,res)=>{
+    try {
+      let posts = await Post.find()
+      res.status(200).json(posts);
+    } catch (error) {
+      res.sendStatus(500).json({message : "Error with fetching posts"})
+    }
+  }
 //////////////////////////////////////////////////////
 const findPost = async (req, res) => {
     try {
@@ -72,5 +81,6 @@ module.exports = {
     addPost,
     findPost,
     updatePost,
-    deletePost
+    deletePost,
+    getAllPosts
 }

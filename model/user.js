@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
     dateOfBirth :{type : Date , required : true},
     bio : {type : String},
     registration_Date :{ type :Date , default : Date.now()},
-    role :{type : String , required : true}
+    isAdmin :{type : Boolean , required : true , default : false}
 })
 
 const User = mongoose.model( "User", userSchema );
