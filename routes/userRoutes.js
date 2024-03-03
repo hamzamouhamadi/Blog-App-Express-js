@@ -1,6 +1,5 @@
 const express = require("express")
-
-const {register,login,getUser,logout,getAll,updateUser} = require('../controllers/userControllers')
+const {register,login,getUser,logout,getAll,updateUser} = require('../controllers/userController')
 const middleware = require('../middleware/localAuth')
 const isLogged = middleware.isLogged;
 const router = express.Router();

@@ -3,7 +3,7 @@ const passport = require('passport');
 const session = require('express-session');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
-const User = require('../model/user.model')
+const User = require('../model/user')
 //////////////////////////////////////////////////////////////////////
 const app = express();
 app.use(express.json())
