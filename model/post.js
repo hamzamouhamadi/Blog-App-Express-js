@@ -1,24 +1,17 @@
-const fs = require('fs');
-const path = require('path');
-///////////////////////////////////////////////////////////////
-const dataFilePath = path.join(__dirname, '../data/posts.json');
-function getAllPosts() {
-    try {
-        const rawData = fs.readFileSync(dataFilePath, 'utf8');
-        const data = JSON.parse(rawData);
-        return Array.isArray(data) ? data : [];
-    } catch (error) {
-        return [];
-    }
-}
-///////////////////////////////////////////////////////////////
-function writePosts(posts) {
-    const jsonData = JSON.stringify(posts, null, 2);
+const mongoose = require('mongoose');
 
-    fs.writeFileSync(dataFilePath, jsonData);
-}
-///////////////////////////////////////////////////////////////
-module.exports = {
-    getAllPosts,
-    writePosts
-};
+const PostSchema = new mongoose.Schema({
+    title :{type : String , required : true},
+    content :{type : String , required : true},
+    authorId :{type : mongoose.Schema.Types.ObjectId ,ref : 'User'},
+    publicationDate : {type : Date , default : Date.now()},
+    lastModified : {type : Date , default : Date.now()},
+    category : {type : String , required : true}
+    //views : {},
+    //likes :{},
+    //comments :{}
+})
+
+const Post = mongoose.model(  "Post" , PostSchema)
+
+module.exports = Post
