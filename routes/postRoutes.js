@@ -6,8 +6,8 @@ const router = express.Router();
 ///////////////////////////////////////////////////////////////
 router.get('/',getPosts);
 router.post('/',isLogged,addPost);
-router.get('/:id',findPost);
-router.put('/:id',updatePost);
-router.delete('/:id',deletePost);
+router.get('/:id',isLogged,findPost);
+router.put('/:id',isLogged,updatePost);
+router.delete('/:id',isLogged,deletePost);
 ///////////////////////////////////////////////////////////////
 module.exports = router;
